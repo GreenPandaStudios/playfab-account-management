@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 /// <summary>
 /// Contains the base functionality for all login drivers
@@ -16,7 +14,7 @@ public abstract class LoginDriver : MonoBehaviour
     /// <seealso cref="PlayFabLoginManager.OnLogin"/>
     /// </summary>
     [Tooltip("Called when the login was a success")]
-    
+
     [SerializeField] UnityEvent loginSuccess;
     /// <summary>
     /// <see cref="loginSuccess"/>
@@ -30,7 +28,7 @@ public abstract class LoginDriver : MonoBehaviour
     /// <summary>
     /// <see cref="loginFail"/>
     /// </summary>
-    public void InvokeLoginFailure() => loginSuccess?.Invoke();
+    public void InvokeLoginFailure() => loginFail?.Invoke();
 
     public enum LoginType
     {
@@ -56,7 +54,7 @@ public abstract class LoginDriver : MonoBehaviour
     [Tooltip("What kind of login do we want to attempt?")]
     [SerializeField]
     LoginType loginType;
-    
+
     [SerializeField]
     [Tooltip("Where should messages regarding the login be displayed?")]
     TextMeshProUGUI loginStatusDisplay;
@@ -64,7 +62,7 @@ public abstract class LoginDriver : MonoBehaviour
     /// The type of login we are attempting to initiate
     /// </summary>
     public LoginType Type { get => loginType; }
-    
+
     private void Awake()
     {
         if (loginButton)
